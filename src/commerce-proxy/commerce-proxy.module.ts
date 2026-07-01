@@ -9,5 +9,6 @@ import { CommerceProxyService } from './commerce-proxy.service';
   imports: [HttpModule, AuthProxyModule],
   controllers: [CommerceProxyController],
   providers: [CommerceProxyService, GatewayAuthGuard],
+  exports: [CommerceProxyService],
 })
 export class CommerceProxyModule {}
