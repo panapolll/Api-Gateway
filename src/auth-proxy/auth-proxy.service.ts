@@ -45,6 +45,10 @@ export class AuthProxyService {
     return this.forward<VerifyResult>('/auth/verify', { token });
   }
 
+  async refresh(userId: string, refreshToken: string): Promise<AuthTokens> {
+    return this.forward<AuthTokens>('/auth/refresh', { userId, refreshToken });
+  }
+
   // ฟังก์ชันกลางสำหรับยิง request ไป auth-service และจัดการ error
   private async forward<T>(
     path: string,

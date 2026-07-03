@@ -7,3 +7,8 @@ export class RegisterDto {
   email!: string;
   password!: string;
 }
+
+export class RefreshTokenDto {
+  userId!: string;
+  refreshToken!: string;
+}
