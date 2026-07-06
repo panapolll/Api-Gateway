@@ -5,6 +5,7 @@ import { CommerceProxyModule } from './commerce-proxy/commerce-proxy.module';
 import { CartProxyModule } from './cart-proxy/cart-proxy.module';
 import { OrdersProxyModule } from './orders-proxy/orders-proxy.module';
 import { PaymentsProxyModule } from './payments-proxy/payments-proxy.module';
+import { NotificationProxyModule } from './notification-proxy/notification-proxy.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { PaymentsProxyModule } from './payments-proxy/payments-proxy.module';
     CartProxyModule,
     OrdersProxyModule,
     PaymentsProxyModule,
+    NotificationProxyModule,
   ],
 })
 export class AppModule {}
