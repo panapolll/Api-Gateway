@@ -1,55 +1,20 @@
-# 🔀 Fruit Shop — API Gateway
+# Api-Gateway — ประตูทางเข้า
 
-API Gateway ตัวกลางที่ route request จาก Frontend ไปยัง Auth Service และ Commerce API
+เว็บยิงมาที่นี่ที่เดียว แล้ว gateway ส่งต่อให้ service อื่น
 
-## 🏗️ Architecture
+## ส่งต่อไปไหน
 
-```
-Frontend (:5173)
-  └── API Gateway (:3004)  ← this repo
-        ├── Auth Service     → /auth/*
-        └── Commerce API     → /products, /cart, /orders, /payments
-```
+- `/auth/*` → Auth (port 3100)
+- `/products`, `/cart`, `/orders`, `/payments` → Commerce (port 3000)
+- `/notifications/*` → Notification (port 3001)
 
-## 🔗 Related Repositories
+## ใช้อะไรทำ
 
-| Service      | Repository                                                              |
-| ------------ | ----------------------------------------------------------------------- |
-| Frontend     | [fruit-shop-frontend](https://github.com/panapolll/fruit-shop-frontend) |
-| Commerce API | [commerce-api](https://github.com/panapolll/commerce-api)               |
-| Auth Service | [Auth-Service](https://github.com/panapolll/Auth-Service)               |
+NestJS
 
-## ✨ Proxied Routes
-
-| Method          | Gateway Path       | Target Service |
-| --------------- | ------------------ | -------------- |
-| POST            | `/auth/login`      | Auth Service   |
-| POST            | `/auth/register`   | Auth Service   |
-| POST            | `/auth/refresh`    | Auth Service   |
-| GET/POST/DELETE | `/products/*`      | Commerce API   |
-| GET/POST/DELETE | `/cart/*`          | Commerce API   |
-| POST            | `/orders/checkout` | Commerce API   |
-| GET             | `/orders/me`       | Commerce API   |
-| POST            | `/payments/charge` | Commerce API   |
-
-## 🚀 Getting Started
+## วิธีรัน
 
 ```bash
-git clone https://github.com/panapolll/Api-Gateway.git
-cd Api-Gateway
 yarn install
-cp .env.example .env
 yarn start:dev
 ```
-
-## ⚙️ Environment Variables
-
-| Variable               | Description      | Example                                  |
-| ---------------------- | ---------------- | ---------------------------------------- |
-| `AUTH_SERVICE_URL`     | Auth Service URL | `https://auth-service-7xty.onrender.com` |
-| `COMMERCE_SERVICE_URL` | Commerce API URL | `http://localhost:3000`                  |
-| `PORT`                 | Gateway port     | `3004`                                   |
-
-## 👨‍💻 Author
-
-Portfolio project — microservices e-commerce.
