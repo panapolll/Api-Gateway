@@ -40,6 +40,7 @@ export class CommerceProxyService {
                 'x-user-id': user.userId,
                 'x-user-email': user.email,
                 'x-user-role': user.role,
+                // 'x-gateway-secret': process.env.GATEWAY_SECRET,
               }
             : {},
         }),

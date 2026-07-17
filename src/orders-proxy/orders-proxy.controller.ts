@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { GatewayAuthGuard } from 'src/auth-proxy/guard/gateway-auth/gateway-auth.guard';
 import { CommerceProxyService } from 'src/commerce-proxy/commerce-proxy.service';
 
@@ -23,5 +32,24 @@ export class OrdersProxyController {
   @Get('me')
   getMyOrders(@Req() req: RequestWithUser) {
     return this.commerceProxyService.forward('GET', '/orders/me', req.user);
+  }
+
+  @Get()
+  getAllOrders(@Req() req: RequestWithUser) {
+    return this.commerceProxyService.forward('GET', '/orders', req.user);
+  }
+
+  @Patch(':id/status')
+  updateStatus(
+    @Req() req: RequestWithUser,
+    @Param('id') id: string,
+    @Body() body: { status: string },
+  ) {
+    return this.commerceProxyService.forward(
+      'PATCH',
+      `/orders/${id}/status`,
+      req.user,
+      body,
+    );
   }
 }
